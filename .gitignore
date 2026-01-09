@@ -1,0 +1,43 @@
+# Environment variables
+.env
+
+# Database files
+data/db.sqlite3
+*.db
+*.sqlite
+*.sqlite3
+
+# Raw data (can be large)
+data/raw/*
+!data/raw/.gitkeep
+
+# Logs
+data/logs/*.log
+!data/logs/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Distribution
+dist/
+build/
+*.egg-info/
