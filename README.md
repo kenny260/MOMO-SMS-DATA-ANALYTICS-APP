@@ -1,8 +1,7 @@
 # MOMO-SMS-DATA-ANALYTICS-APP
- # MoMo SMS Data Analytics Platform
-
+ 
 ## Project Description
-Enterprise-level MoMo SMS data processing and analytics platform for cleaning, categorizing, and visualizing mobile money transaction data.
+A fullstack pipeline to parse MoMo SMS XML, clean and categorize transactions, store them in SQLite, and visualize analytics via a lightweight dashboard.
 
 # Team Name: MoMo SMS Analytics Team
 
