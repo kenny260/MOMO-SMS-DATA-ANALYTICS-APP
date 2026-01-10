@@ -11,7 +11,7 @@ A fullstack pipeline to parse MoMo SMS XML, clean and categorize transactions, s
 - Cherish Yusuf - Scrum Master & Frontend Development
 
 ## Architecture
-[Architecture diagram will be added by Cedric]
+![Architecture Diagram](docs/architecture.png)
 
 ## Scrum Board
 [Scrum board link will be added by Cherish]
