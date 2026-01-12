@@ -14,7 +14,9 @@ A fullstack pipeline to parse MoMo SMS XML, clean and categorize transactions, s
 ![Architecture Diagram](docs/architecture.png)
 
 ## Scrum Board
-[Scrum board link will be added by Cherish]
+[(https://trello.com/invite/b/696362d52dfc3aa699034cce/ATTIe44c47408f5b74f9708de37808690e43B1EE2C98/group-9-momo-sms-data-dashboard-scrum-board)]
+
+NOTE- We used TRELLO for our scrum board; to view the board, please log in with a free Trello account.
 
 ## Project Structure
 ```
@@ -43,3 +45,5 @@ pip install -r requirements.txt
 
 ---
 *Week 1 - Team Setup and Planning*
+
+Updated by Cherish Yusuf for Scrum board submission test.
