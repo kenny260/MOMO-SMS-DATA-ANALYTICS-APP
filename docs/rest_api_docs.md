@@ -12,7 +12,7 @@ REST API for MoMo SMS transaction data using Python's `http.server` module.
 
 ```bash
 # Create folders
-mkdir -p dsa screenshots
+mkdir -p dsa enshots
 
 # Generate sample data
 python3 scripts/create_sample_data.py
