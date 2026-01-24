@@ -1,12 +1,7 @@
 #!/usr/bin/env python3
 """
 Transaction Collection Handler
-
-Implements business logic for:
-- GET /transactions
-- POST /transactions
-
-Integrates with existing ETL pipeline and JSON-based storage.
+Business logic for GET /transactions and POST /transactions
 """
 
 import json
@@ -14,144 +9,149 @@ import os
 import sys
 from datetime import datetime
 
-# Add parent directory for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 class TransactionCollectionHandler:
-    """
-    Handles transaction collection operations:
-    listing all transactions and creating new transactions.
-    """
-
+    """Handles transaction collection operations"""
+    
     def __init__(self):
-        """Initialize handler and load existing data"""
-        self.processed_data = "data/processed/dashboard.json"
-        self.backup_data = "data/transactions.json"
-
+        """Initialize handler with data sources"""
+        self.etl_output = 'data/processed/dashboard.json'
+        self.backup_storage = 'data/transactions.json'
+        
         self.transactions = []
         self.next_id = 1
         self._load_data()
-
+    
     def _load_data(self):
-        """Load transactions from ETL output or backup storage"""
-
-        if os.path.exists(self.processed_data):
+        """Load transactions from existing data sources"""
+        if os.path.exists(self.etl_output):
             try:
-                with open(self.processed_data, "r") as f:
+                with open(self.etl_output, 'r') as f:
                     data = json.load(f)
-
-                    if isinstance(data, dict) and "transactions" in data:
-                        self.transactions = data["transactions"]
+                    
+                    if isinstance(data, dict) and 'transactions' in data:
+                        self.transactions = data['transactions']
                     elif isinstance(data, list):
                         self.transactions = data
                     else:
                         self.transactions = []
-
-            except Exception:
+                    
+                    print(f"Loaded {len(self.transactions)} transactions from ETL output")
+                    
+            except Exception as e:
+                print(f"Warning: Could not load ETL data: {e}")
                 self.transactions = []
-
-        elif os.path.exists(self.backup_data):
+        
+        elif os.path.exists(self.backup_storage):
             try:
-                with open(self.backup_data, "r") as f:
+                with open(self.backup_storage, 'r') as f:
                     self.transactions = json.load(f)
-            except Exception:
+                print(f"Loaded {len(self.transactions)} transactions from backup")
+                
+            except Exception as e:
+                print(f"Warning: Could not load backup data: {e}")
                 self.transactions = []
-
+        
         else:
+            print("No existing data found. Starting with empty collection.")
             self.transactions = []
-
+        
         if self.transactions:
             try:
-                self.next_id = max(
-                    int(t.get("id", 0)) for t in self.transactions
-                ) + 1
-            except Exception:
+                existing_ids = [int(t.get('id', 0)) for t in self.transactions if 'id' in t]
+                if existing_ids:
+                    self.next_id = max(existing_ids) + 1
+                else:
+                    self.next_id = len(self.transactions) + 1
+            except:
                 self.next_id = len(self.transactions) + 1
-
+    
     def _save_data(self):
-        """Persist transactions to backup JSON file"""
+        """Save transactions to JSON file"""
         try:
-            os.makedirs(os.path.dirname(self.backup_data), exist_ok=True)
-            with open(self.backup_data, "w") as f:
+            os.makedirs(os.path.dirname(self.backup_storage), exist_ok=True)
+            
+            with open(self.backup_storage, 'w') as f:
                 json.dump(self.transactions, f, indent=2)
-        except Exception:
-            pass
-
+            
+            print(f"Saved {len(self.transactions)} transactions")
+            
+        except Exception as e:
+            print(f"Error saving data: {e}")
+    
     def get_all_transactions(self):
-        """
-        Retrieve all transactions.
-
-        Returns:
-            dict: count and list of transactions
-        """
+        """GET /transactions - Returns all transactions"""
         return {
             "count": len(self.transactions),
             "transactions": self.transactions
         }
-
+    
     def add_transaction(self, data):
-        """
-        Create a new transaction with validation.
-
-        Args:
-            data (dict): Request payload
-
-        Returns:
-            dict: success response or error message
-        """
-
-        required_fields = ["type", "amount", "sender", "receiver"]
-        missing = [f for f in required_fields if f not in data]
-
-        if missing:
+        """POST /transactions - Creates a new transaction with validation"""
+        required_fields = ['type', 'amount', 'sender', 'receiver']
+        missing_fields = [field for field in required_fields if field not in data]
+        
+        if missing_fields:
             return {
-                "error": f"Missing required fields: {', '.join(missing)}"
+                "error": f"Missing required fields: {', '.join(missing_fields)}"
             }
-
-        valid_types = ["SEND", "RECEIVE", "DEPOSIT", "WITHDRAW", "PAYMENT"]
-        transaction_type = str(data["type"]).upper()
-
+        
+        valid_types = ['SEND', 'RECEIVE', 'DEPOSIT', 'WITHDRAW', 'PAYMENT']
+        transaction_type = str(data['type']).upper()
+        
         if transaction_type not in valid_types:
             return {
-                "error": f"Invalid transaction type. Must be one of: {', '.join(valid_types)}"
+                "error": f"Invalid type. Must be one of: {', '.join(valid_types)}"
             }
-
+        
         try:
-            amount = float(data["amount"])
+            amount = float(data['amount'])
             if amount <= 0:
-                return {"error": "Amount must be greater than 0"}
+                return {
+                    "error": "Amount must be greater than 0"
+                }
         except (ValueError, TypeError):
-            return {"error": "Invalid amount format"}
-
-        if not str(data["sender"]).strip():
+            return {
+                "error": "Invalid amount. Must be a number"
+            }
+        
+        if not str(data['sender']).strip():
             return {"error": "Sender cannot be empty"}
-
-        if not str(data["receiver"]).strip():
+        
+        if not str(data['receiver']).strip():
             return {"error": "Receiver cannot be empty"}
-
-        transaction = {
+        
+        new_transaction = {
             "id": str(self.next_id),
             "type": transaction_type,
             "amount": amount,
-            "sender": str(data["sender"]).strip(),
-            "receiver": str(data["receiver"]).strip(),
-            "timestamp": data.get("timestamp", datetime.now().isoformat()),
-            "status": data.get("status", "completed"),
-            "reference": data.get("reference", f"TXN{self.next_id:06d}")
+            "sender": str(data['sender']).strip(),
+            "receiver": str(data['receiver']).strip(),
+            "timestamp": data.get('timestamp', datetime.now().isoformat())
         }
-
-        if "category" in data:
-            transaction["category"] = data["category"]
-
-        if "description" in data:
-            transaction["description"] = data["description"]
-
-        self.transactions.append(transaction)
+        
+        if 'status' in data:
+            new_transaction['status'] = data['status']
+        
+        if 'reference' in data:
+            new_transaction['reference'] = data['reference']
+        else:
+            new_transaction['reference'] = f"TXN{self.next_id:06d}"
+        
+        if 'category' in data:
+            new_transaction['category'] = data['category']
+        
+        if 'description' in data:
+            new_transaction['description'] = data['description']
+        
+        self.transactions.append(new_transaction)
         self.next_id += 1
+        
         self._save_data()
-
+        
         return {
             "message": "Transaction created successfully",
-            "transaction": transaction
+            "transaction": new_transaction
         }
