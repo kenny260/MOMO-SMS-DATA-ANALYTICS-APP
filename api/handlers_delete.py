@@ -11,7 +11,7 @@ TRANSACTIONS = [
 class RequestHandler(BaseHTTPRequestHandler):
 
     def do_DELETE(self):
-        # 🔐 AUTH CHECK (protect ALL endpoints)
+        # AUTH CHECK (protect ALL endpoints)
         if not check_auth(self.headers):
             self.send_response(401)
             self.send_header("WWW-Authenticate", 'Basic realm="Secure API"')
