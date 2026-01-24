@@ -32,11 +32,26 @@ Deletes a transaction using its ID.
 DELETE /transactions/{id}
 
 
+### Example
+```bash
+curl -X DELETE http://localhost:8000/transactions/3 -u admin:password123
+```
+
+| Code | Meaning               |
+| ---- | --------------------- |
+| 200  | Deleted successfully  |
+| 401  | Unauthorized          |
+| 404  | Transaction not found |
+
+
+
 ### Error Handling
 Invalid or missing credentials → 401 Unauthorized
 Non-existing transaction ID → 404 Not Found
 
 ### Implementation Files
+```
 api/
  ├── auth.py
  └── handlers_delete.py
+```
