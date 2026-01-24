@@ -82,6 +82,7 @@ Results saved to `dsa/results.txt`
 - `500` - Server Error
 
 ## Project Structure
+```
 ├── api/
 │   ├── rest_server.py              # REST API server
 │   └── collection_handlers.py      # Business logic
