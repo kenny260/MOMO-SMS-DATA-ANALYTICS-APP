@@ -82,13 +82,13 @@ Results saved to `dsa/results.txt`
 - `500` - Server Error
 
 ## Project Structure
-
-```
 ├── api/
-│   ├── rest_server.py
-│   └── collection_handlers.py
+│   ├── rest_server.py              # REST API server
+│   └── collection_handlers.py      # Business logic
 ├── dsa/
-│   ├── search_comparison.py
-│   └── results.txt
-
-```
+│   ├── search_comparison.py        # Performance analysis
+│   └── results.txt                 # Results
+├── screenshots/
+│   ├── get_success.png
+│   ├── post_success.png
+│   └── unauthorized.png
