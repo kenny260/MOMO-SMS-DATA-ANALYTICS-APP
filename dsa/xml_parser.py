@@ -1,4 +1,69 @@
-<?xml version="1.0" encoding="UTF-8"?>
+#!/usr/bin/env python3
+"""
+XML Parser for MoMo SMS Transaction Data
+Parses modified_sms_v2.xml into JSON format
+"""
+
+import xml.etree.ElementTree as ET
+import json
+import os
+
+
+def parse_xml_to_json(xml_file='modified_sms_v2.xml', output_file='data/transactions.json'):
+    """
+    Parse XML SMS records and convert to JSON
+    
+    Args:
+        xml_file: Path to input XML file
+        output_file: Path to output JSON file
+    
+    Returns:
+        List of transaction dictionaries
+    """
+    try:
+        tree = ET.parse(xml_file)
+        root = tree.getroot()
+        
+        transactions = []
+        transaction_id = 1
+        
+        for sms in root.findall('.//sms'):
+            transaction = {
+                "id": str(transaction_id),
+                "type": sms.get('type', 'UNKNOWN').upper(),
+                "amount": float(sms.get('amount', 0)),
+                "sender": sms.get('sender', ''),
+                "receiver": sms.get('receiver', ''),
+                "timestamp": sms.get('timestamp', ''),
+                "status": sms.get('status', 'completed'),
+                "reference": sms.get('reference', f'TXN{transaction_id:06d}')
+            }
+            
+            transactions.append(transaction)
+            transaction_id += 1
+        
+        os.makedirs(os.path.dirname(output_file), exist_ok=True)
+        
+        with open(output_file, 'w') as f:
+            json.dump(transactions, f, indent=2)
+        
+        print(f"Parsed {len(transactions)} transactions")
+        print(f"Saved to {output_file}")
+        
+        return transactions
+        
+    except FileNotFoundError:
+        print(f"Error: File '{xml_file}' not found")
+        return []
+    except ET.ParseError as e:
+        print(f"XML parse error: {e}")
+        return []
+
+
+def create_sample_xml(filename='modified_sms_v2.xml'):
+    """Create sample XML file with 25+ transactions for testing"""
+    
+    xml_content = """<?xml version="1.0" encoding="UTF-8"?>
 <sms_records>
     <sms type="SEND" amount="5000" sender="0791234567" receiver="0797654321" 
          timestamp="2024-01-15T10:30:00" status="completed" reference="TXN000001"/>
@@ -51,3 +116,23 @@
     <sms type="PAYMENT" amount="2200" sender="0791234567" receiver="GAS_STATION" 
          timestamp="2024-01-24T08:45:00" status="completed" reference="TXN000025"/>
 </sms_records>
+"""
+    
+    with open(filename, 'w') as f:
+        f.write(xml_content)
+    
+    print(f"Created sample XML: {filename}")
+
+
+if __name__ == '__main__':
+    xml_file = 'modified_sms_v2.xml'
+    
+    if not os.path.exists(xml_file):
+        print("XML file not found. Creating sample...")
+        create_sample_xml(xml_file)
+    
+    transactions = parse_xml_to_json(xml_file)
+    
+    if transactions:
+        print(f"\nSample transaction:")
+        print(json.dumps(transactions[0], indent=2))

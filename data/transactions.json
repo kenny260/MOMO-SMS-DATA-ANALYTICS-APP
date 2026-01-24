@@ -2,10 +2,261 @@
   {
     "id": "1",
     "type": "SEND",
+    "amount": 2000.0,
+    "sender": "0791234567",
+    "receiver": "0797654321",
+    "timestamp": "2024-01-15T10:30:00",
+    "status": "completed",
+    "reference": "TXN000001"
+  },
+  {
+    "id": "2",
+    "type": "RECEIVE",
+    "amount": 3500.0,
+    "sender": "0797654321",
+    "receiver": "0791234567",
+    "timestamp": "2024-01-15T11:45:00",
+    "status": "completed",
+    "reference": "TXN000002"
+  },
+  {
+    "id": "3",
+    "type": "DEPOSIT",
+    "amount": 10000.0,
+    "sender": "0791234567",
+    "receiver": "BANK",
+    "timestamp": "2024-01-15T14:20:00",
+    "status": "completed",
+    "reference": "TXN000003"
+  },
+  {
+    "id": "4",
+    "type": "WITHDRAW",
+    "amount": 2000.0,
+    "sender": "ATM001",
+    "receiver": "0791234567",
+    "timestamp": "2024-01-16T09:15:00",
+    "status": "completed",
+    "reference": "TXN000004"
+  },
+  {
+    "id": "5",
+    "type": "PAYMENT",
     "amount": 1500.0,
     "sender": "0791234567",
+    "receiver": "MERCHANT_XYZ",
+    "timestamp": "2024-01-16T16:30:00",
+    "status": "completed",
+    "reference": "TXN000005"
+  },
+  {
+    "id": "6",
+    "type": "SEND",
+    "amount": 8000.0,
+    "sender": "0791234567",
     "receiver": "0798888888",
-    "timestamp": "2026-01-24T12:37:08.908336",
-    "reference": "TXN000001"
+    "timestamp": "2024-01-17T08:00:00",
+    "status": "completed",
+    "reference": "TXN000006"
+  },
+  {
+    "id": "7",
+    "type": "RECEIVE",
+    "amount": 4200.0,
+    "sender": "0795555555",
+    "receiver": "0791234567",
+    "timestamp": "2024-01-17T12:30:00",
+    "status": "completed",
+    "reference": "TXN000007"
+  },
+  {
+    "id": "8",
+    "type": "PAYMENT",
+    "amount": 750.0,
+    "sender": "0791234567",
+    "receiver": "UTILITY_CO",
+    "timestamp": "2024-01-18T10:00:00",
+    "status": "completed",
+    "reference": "TXN000008"
+  },
+  {
+    "id": "9",
+    "type": "SEND",
+    "amount": 6500.0,
+    "sender": "0791234567",
+    "receiver": "0796666666",
+    "timestamp": "2024-01-18T15:45:00",
+    "status": "completed",
+    "reference": "TXN000009"
+  },
+  {
+    "id": "10",
+    "type": "DEPOSIT",
+    "amount": 15000.0,
+    "sender": "0791234567",
+    "receiver": "BANK",
+    "timestamp": "2024-01-19T11:20:00",
+    "status": "completed",
+    "reference": "TXN000010"
+  },
+  {
+    "id": "11",
+    "type": "WITHDRAW",
+    "amount": 3000.0,
+    "sender": "ATM002",
+    "receiver": "0791234567",
+    "timestamp": "2024-01-19T16:00:00",
+    "status": "completed",
+    "reference": "TXN000011"
+  },
+  {
+    "id": "12",
+    "type": "SEND",
+    "amount": 2500.0,
+    "sender": "0791234567",
+    "receiver": "0799999999",
+    "timestamp": "2024-01-20T09:30:00",
+    "status": "completed",
+    "reference": "TXN000012"
+  },
+  {
+    "id": "13",
+    "type": "PAYMENT",
+    "amount": 1200.0,
+    "sender": "0791234567",
+    "receiver": "SHOP_ABC",
+    "timestamp": "2024-01-20T13:15:00",
+    "status": "completed",
+    "reference": "TXN000013"
+  },
+  {
+    "id": "14",
+    "type": "RECEIVE",
+    "amount": 5500.0,
+    "sender": "0794444444",
+    "receiver": "0791234567",
+    "timestamp": "2024-01-20T18:00:00",
+    "status": "completed",
+    "reference": "TXN000014"
+  },
+  {
+    "id": "15",
+    "type": "SEND",
+    "amount": 7000.0,
+    "sender": "0791234567",
+    "receiver": "0793333333",
+    "timestamp": "2024-01-21T10:45:00",
+    "status": "completed",
+    "reference": "TXN000015"
+  },
+  {
+    "id": "16",
+    "type": "DEPOSIT",
+    "amount": 20000.0,
+    "sender": "0791234567",
+    "receiver": "BANK",
+    "timestamp": "2024-01-21T14:30:00",
+    "status": "completed",
+    "reference": "TXN000016"
+  },
+  {
+    "id": "17",
+    "type": "PAYMENT",
+    "amount": 900.0,
+    "sender": "0791234567",
+    "receiver": "RESTAURANT",
+    "timestamp": "2024-01-21T19:00:00",
+    "status": "completed",
+    "reference": "TXN000017"
+  },
+  {
+    "id": "18",
+    "type": "SEND",
+    "amount": 4500.0,
+    "sender": "0791234567",
+    "receiver": "0792222222",
+    "timestamp": "2024-01-22T08:15:00",
+    "status": "completed",
+    "reference": "TXN000018"
+  },
+  {
+    "id": "19",
+    "type": "RECEIVE",
+    "amount": 6000.0,
+    "sender": "0791111111",
+    "receiver": "0791234567",
+    "timestamp": "2024-01-22T11:30:00",
+    "status": "completed",
+    "reference": "TXN000019"
+  },
+  {
+    "id": "20",
+    "type": "WITHDRAW",
+    "amount": 2500.0,
+    "sender": "ATM003",
+    "receiver": "0791234567",
+    "timestamp": "2024-01-22T15:00:00",
+    "status": "completed",
+    "reference": "TXN000020"
+  },
+  {
+    "id": "21",
+    "type": "PAYMENT",
+    "amount": 3500.0,
+    "sender": "0791234567",
+    "receiver": "SUPERMARKET",
+    "timestamp": "2024-01-22T17:45:00",
+    "status": "completed",
+    "reference": "TXN000021"
+  },
+  {
+    "id": "22",
+    "type": "SEND",
+    "amount": 1800.0,
+    "sender": "0791234567",
+    "receiver": "0797777777",
+    "timestamp": "2024-01-23T09:00:00",
+    "status": "completed",
+    "reference": "TXN000022"
+  },
+  {
+    "id": "23",
+    "type": "DEPOSIT",
+    "amount": 12000.0,
+    "sender": "0791234567",
+    "receiver": "BANK",
+    "timestamp": "2024-01-23T13:30:00",
+    "status": "completed",
+    "reference": "TXN000023"
+  },
+  {
+    "id": "24",
+    "type": "RECEIVE",
+    "amount": 4800.0,
+    "sender": "0796666666",
+    "receiver": "0791234567",
+    "timestamp": "2024-01-23T16:15:00",
+    "status": "completed",
+    "reference": "TXN000024"
+  },
+  {
+    "id": "25",
+    "type": "PAYMENT",
+    "amount": 2200.0,
+    "sender": "0791234567",
+    "receiver": "GAS_STATION",
+    "timestamp": "2024-01-24T08:45:00",
+    "status": "completed",
+    "reference": "TXN000025"
+  },
+  {
+    "id": "26",
+    "type": "SEND",
+    "amount": 1000.0,
+    "sender": "A",
+    "receiver": "B",
+    "timestamp": "2026-01-24T22:04:54.602149",
+    "status": "completed",
+    "reference": "TXN000026"
   }
 ]
