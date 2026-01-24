@@ -90,5 +90,5 @@ Results saved to `dsa/results.txt`
 ├── dsa/
 │   ├── search_comparison.py
 │   └── results.txt
-├── screenshots/
+
 ```
