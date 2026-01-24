@@ -33,7 +33,7 @@ DELETE /transactions/{id}
 
 
 ### Example
-```bash
+
 curl -X DELETE http://localhost:8000/transactions/3 -u admin:password123
 Responses
 Code	Meaning
