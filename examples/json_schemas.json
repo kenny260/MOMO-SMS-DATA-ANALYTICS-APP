@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "user": {
+      "user_id": 1,
+      "phone_number": "0791234567",
+      "full_name": "John Doe",
+      "email": "john.doe@example.com",
+      "registration_date": "2024-01-10T08:30:00Z",
+      "account_status": "active"
+    },
+    
+    "transaction_category": {
+      "category_id": 1,
+      "category_name": "SEND",
+      "description": "Send money to another user",
+      "is_active": true
+    },
+    
+    "transaction": {
+      "transaction_id": 1,
+      "reference": "TXN000001",
+      "sender_id": 1,
+      "receiver_id": 2,
+      "category_id": 1,
+      "amount": 5000.00,
+      "currency": "SZL",
+      "status": "completed",
+      "transaction_date": "2024-01-15T10:30:00Z",
+      "description": "Monthly allowance"
+    },
+    
+    "system_log": {
+      "log_id": 1,
+      "log_level": "INFO",
+      "log_message": "ETL process started",
+      "event_type": "ETL",
+      "source_module": "etl.run",
+      "created_at": "2024-01-15T08:00:00Z"
+    }
+  },
+  
+  "complex_transaction": {
+    "transaction_id": 1,
+    "reference": "TXN000001",
+    "amount": 5000.00,
+    "currency": "SZL",
+    "status": "completed",
+    "transaction_date": "2024-01-15T10:30:00Z",
+    "description": "Monthly allowance",
+    "sender": {
+      "user_id": 1,
+      "phone_number": "0791234567",
+      "full_name": "John Doe",
+      "email": "john.doe@example.com"
+    },
+    "receiver": {
+      "user_id": 2,
+      "phone_number": "0797654321",
+      "full_name": "Jane Smith",
+      "email": "jane.smith@example.com"
+    },
+    "category": {
+      "category_id": 1,
+      "category_name": "SEND",
+      "description": "Send money to another user"
+    }
+  },
+  
+  "sql_to_json_mapping": {
+    "Users": {
+      "table_columns": ["user_id", "phone_number", "full_name", "email", "registration_date", "account_status"],
+      "json_fields": ["user_id", "phone_number", "full_name", "email", "registration_date", "account_status"],
+      "notes": "Direct 1:1 mapping"
+    },
+    "Transactions": {
+      "table_columns": ["transaction_id", "reference", "sender_id", "receiver_id", "category_id", "amount"],
+      "json_representation": "Foreign keys expanded to nested objects via JOINs"
+    },
+    "Transaction_Categories": {
+      "table_columns": ["category_id", "category_name", "description"],
+      "json_fields": ["category_id", "category_name", "description"]
+    }
+  }
+}
