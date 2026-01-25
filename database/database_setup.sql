@@ -54,7 +54,6 @@ CREATE TABLE Transactions (
         REFERENCES Transaction_Categories(category_id) ON DELETE RESTRICT ON UPDATE CASCADE,
     
     CONSTRAINT chk_amount CHECK (amount > 0),
-    CONSTRAINT chk_users CHECK (sender_id != receiver_id),
     
     INDEX idx_sender (sender_id),
     INDEX idx_receiver (receiver_id),
