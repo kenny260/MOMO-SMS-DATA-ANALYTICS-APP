@@ -1,0 +1,35 @@
+======================================================================
+DSA PERFORMANCE COMPARISON
+======================================================================
+
+Dataset Size: 25 transactions
+Number of Searches: 1000
+Dictionary Build Time: 0.0100 ms
+
+LINEAR SEARCH (O(n))
+  Total Time: 1.2846 ms
+  Average Time: 0.001285 ms
+
+DICTIONARY LOOKUP (O(1))
+  Total Time: 0.0894 ms
+  Average Time: 0.000089 ms
+
+SPEEDUP: 14.37x faster
+
+======================================================================
+ANALYSIS
+======================================================================
+
+Dictionary lookup is faster because:
+
+1. Hash table provides O(1) average access time
+2. Direct memory location via hash function
+3. No iteration through entire list
+
+Linear search must check each element sequentially (O(n)),
+making it slower as dataset grows.
+
+Alternative data structures:
+- Binary Search Tree: O(log n)
+- B-Tree: O(log n), optimized for databases
+- Trie: O(k) for prefix searches

@@ -38,6 +38,91 @@ git clone https://github.com/kenny260/MOMO-SMS-DATA-ANALYTICS-APP.git
 pip install -r requirements.txt
 ```
 
+### Parse Data
+```bash
+python3 dsa/xml_parser.py
+```
+
+### Start Server
+```bash
+python3 api/server.py
+```
+
+Server runs on `http://localhost:8000`
+
+## Authentication
+
+**Credentials:** `admin` / `secure123`
+
+```bash
+curl -u admin:secure123 http://localhost:8000/transactions
+```
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/transactions` | List all |
+| GET | `/transactions/{id}` | Get one |
+| POST | `/transactions` | Create |
+| PUT | `/transactions/{id}` | Update |
+| DELETE | `/transactions/{id}` | Delete |
+
+## Quick Test
+
+```bash
+# List all
+curl -X GET http://localhost:8000/transactions -u admin:secure123
+
+# Get one
+curl -X GET http://localhost:8000/transactions/1 -u admin:secure123
+
+# Create
+curl -X POST http://localhost:8000/transactions \
+  -u admin:secure123 \
+  -H "Content-Type: application/json" \
+  -d '{"type":"SEND","amount":1000,"sender":"A","receiver":"B"}'
+
+# Update
+curl -X PUT http://localhost:8000/transactions/1 \
+  -u admin:secure123 \
+  -H "Content-Type: application/json" \
+  -d '{"amount":2000}'
+
+# Delete
+curl -X DELETE http://localhost:8000/transactions/1 -u admin:secure123
+```
+
+## DSA Analysis
+
+```bash
+python3 dsa/search_compare.py
+```
+
+Results saved to `dsa/results.txt`
+
+## Project Structure
+
+```
+├── api/
+│   └── server.py
+├── dsa/
+│   ├── xml_parser.py
+│   └── search_compare.py
+├── docs/
+│   └── api_docs.md
+├── screenshots/
+├── data/
+│   └── transactions.json
+├── modified_sms_v2.xml
+└── README.md
+```
+
+## Documentation
+
+See `docs/api_docs.md` for complete API documentation.
+
+
 ## Technologies Used
 - Python, SQLite, HTML/CSS/JavaScript
 - ETL: lxml, dateutil
