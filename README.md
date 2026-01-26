@@ -26,6 +26,13 @@ https://trello.com/invite/b/696362d52dfc3aa699034cce/ATTIe44c47408f5b74f9708de37
 
 NOTE- We used TRELLO for our scrum board; to view the board, please log in with a free Trello account.
 
+## Database Design & Implementation
+
+The database layer was designed to support efficient storage, querying, and analysis of MoMo SMS transaction data. A normalized relational schema was derived from the MoMo SMS XML structure, covering Users, Transactions, Transaction Categories, and System Logs, with enforced data integrity, security constraints, and performance indexing.
+
+📄 **Full database documentation is available in:**  
+`docs/design_rationale.md`
+
 ## Project Structure
 ```
 ├── web/              # Frontend dashboard
