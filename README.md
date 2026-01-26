@@ -1,5 +1,13 @@
 # MOMO-SMS-DATA-ANALYTICS-APP
 
+## Team Participation Sheet
+
+This document tracks individual contributions, tasks, and weekly participation of each team member:
+
+🔗 **Google Sheet:**  
+https://docs.google.com/spreadsheets/d/1KIyzzSOkjVcdM_NyRWG-wIBQg5_ztDkq1DnAGGdp6ig/edit?usp=sharing
+
+
 ## Project Description
 A fullstack pipeline to parse MoMo SMS XML, clean and categorize transactions, store them in SQLite, and visualize analytics via a lightweight dashboard.
 
