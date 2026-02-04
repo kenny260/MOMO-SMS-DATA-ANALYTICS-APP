@@ -6,6 +6,7 @@ This document tracks individual contributions, tasks, and weekly participation o
 
 🔗 **Google Sheet:**  
 https://docs.google.com/spreadsheets/d/1KIyzzSOkjVcdM_NyRWG-wIBQg5_ztDkq1DnAGGdp6ig/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1VqKhhTVVV2n0b7X1ssChoM8l2OReail17OHMW72mQmg/edit?usp=sharing
 
 
 ## Project Description
